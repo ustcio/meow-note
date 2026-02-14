@@ -1,0 +1,47 @@
+---
+// src/components/ProfilePage.astro
+---
+<div class="page" id="page-profile">
+    <section class="hero" style="min-height:auto;padding:8rem 2rem 4rem;">
+        <div class="profile-page">
+            <div class="profile-header">
+                <div class="profile-avatar-large" id="profile-avatar">U</div>
+                <div class="profile-info">
+                    <h1 id="profile-display-name">Username</h1>
+                    <p id="profile-email">user@example.com</p>
+                    <div class="profile-badge unverified" id="profile-verify-badge" onclick="resendVerification()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        Email not verified - Click to resend
+                    </div>
+                </div>
+            </div>
+            <div class="profile-message" id="profile-message"></div>
+            <div class="profile-section">
+                <h3>📊 Account Stats</h3>
+                <div class="profile-stats">
+                    <div class="profile-stat"><div class="profile-stat-value" id="stat-api-calls">0</div><div class="profile-stat-label">API Calls</div></div>
+                    <div class="profile-stat"><div class="profile-stat-value" id="stat-days">0</div><div class="profile-stat-label">Days Active</div></div>
+                    <div class="profile-stat"><div class="profile-stat-value" id="stat-plan">Free</div><div class="profile-stat-label">Current Plan</div></div>
+                </div>
+            </div>
+            <div class="profile-section">
+                <h3>👤 Profile Information</h3>
+                <form id="profile-form" onsubmit="updateProfile(event)">
+                    <div class="profile-form-group"><label>Username</label><input type="text" id="profile-username" placeholder="Your display name" required minlength="2" maxlength="20"></div>
+                    <div class="profile-form-group"><label>Email</label><input type="email" id="profile-email-input" disabled></div>
+                    <div class="profile-form-group"><label>Member Since</label><input type="text" id="profile-created" disabled></div>
+                    <div class="profile-actions"><button type="submit" class="profile-btn profile-btn-primary">Save Changes</button></div>
+                </form>
+            </div>
+            <div class="profile-section">
+                <h3>🔒 Security</h3>
+                <form id="password-form" onsubmit="changePassword(event)">
+                    <div class="profile-form-group"><label>Current Password</label><input type="password" id="current-password" placeholder="Enter current password" required></div>
+                    <div class="profile-form-group"><label>New Password</label><input type="password" id="new-password" placeholder="Enter new password" required minlength="6"></div>
+                    <div class="profile-form-group"><label>Confirm New Password</label><input type="password" id="confirm-password" placeholder="Confirm new password" required></div>
+                    <div class="profile-actions"><button type="submit" class="profile-btn profile-btn-primary">Update Password</button></div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

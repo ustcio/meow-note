@@ -1,0 +1,75 @@
+---
+// src/components/DocsPage.astro
+---
+<div class="page" id="page-docs">
+    <div class="docs-layout">
+        <aside class="docs-sidebar">
+            <div class="docs-nav-section">
+                <h4>Getting Started</h4>
+                <div class="docs-nav-links">
+                    <a class="active" onclick="event.preventDefault()">Quick Start</a>
+                    <a onclick="event.preventDefault()">Installation</a>
+                    <a onclick="event.preventDefault()">Authentication</a>
+                </div>
+            </div>
+            <div class="docs-nav-section">
+                <h4>API Reference</h4>
+                <div class="docs-nav-links">
+                    <a onclick="event.preventDefault()">Completions</a>
+                    <a onclick="event.preventDefault()">Embeddings</a>
+                    <a onclick="event.preventDefault()">Fine-tuning</a>
+                </div>
+            </div>
+            <div class="docs-nav-section">
+                <h4>Guides</h4>
+                <div class="docs-nav-links">
+                    <a onclick="event.preventDefault()">Best Practices</a>
+                    <a onclick="event.preventDefault()">Safety Guidelines</a>
+                    <a onclick="event.preventDefault()">Rate Limits</a>
+                </div>
+            </div>
+        </aside>
+        <main class="docs-main">
+            <h1>Documentation</h1>
+            <p>Everything you need to integrate AGI Era into your applications.</p>
+            <div class="docs-section">
+                <h2>Quick Start</h2>
+                <p>Get up and running with AGI Era in minutes. This guide will walk you through making your first API call.</p>
+                <h3>1. Get your API key</h3>
+                <p>Sign up for an account and generate your API key from the dashboard.</p>
+                <h3>2. Install the SDK</h3>
+                <div class="code-block"><code>npm install @agiera/sdk</code></div>
+                <h3>3. Make your first request</h3>
+                <div class="code-block"><code>import { AGIEra } from '@agiera/sdk';
+
+const client = new AGIEra({
+  apiKey: process.env.AGIERA_API_KEY
+});
+
+const response = await client.complete({
+  model: 'agi-era-v2',
+  prompt: 'Explain quantum computing in simple terms',
+  maxTokens: 500
+});
+
+console.log(response.text);</code></div>
+            </div>
+            <div class="docs-section">
+                <h2>Authentication</h2>
+                <p>All API requests require authentication using your API key. Include it in the Authorization header:</p>
+                <div class="code-block"><code>Authorization: Bearer your-api-key-here</code></div>
+                <p>Keep your API key secure and never expose it in client-side code. Use environment variables or a secrets manager in production.</p>
+            </div>
+            <div class="docs-section">
+                <h2>Safety Guidelines</h2>
+                <p>We're committed to the safe and responsible use of AI. Please follow these guidelines when building with AGI Era:</p>
+                <h3>Content Filtering</h3>
+                <p>All outputs are automatically filtered for harmful content. You can customize sensitivity levels through the API.</p>
+                <h3>Rate Limiting</h3>
+                <p>Implement appropriate rate limits to prevent abuse and ensure fair usage across your user base.</p>
+                <h3>Human Oversight</h3>
+                <p>For high-stakes applications, we recommend implementing human review workflows for AI-generated content.</p>
+            </div>
+        </main>
+    </div>
+</div>

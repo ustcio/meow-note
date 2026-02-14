@@ -1,0 +1,40 @@
+---
+// src/components/Footer.astro
+---
+<div class="visitor-counter">
+    <div class="visitor-counter-inner">
+        <div class="visitor-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <div class="visitor-info">
+            <span class="visitor-label">Total Visitors</span>
+            <div class="visitor-count-wrapper">
+                <span class="visitor-count" id="visitor-uv">--</span>
+                <span class="visitor-suffix">people</span>
+                <div class="visitor-live-dot" title="Live"></div>
+            </div>
+        </div>
+        <div class="visitor-divider"></div>
+        <div class="visitor-info">
+            <span class="visitor-label">Total Views</span>
+            <div class="visitor-count-wrapper">
+                <span class="visitor-count" id="visitor-pv">--</span>
+                <span class="visitor-suffix">views</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Security</a>
+            <a href="#">Status</a>
+            <a href="#">Careers</a>
+            <a href="#">Blog</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 AGI Era. All rights reserved.</p>
+    </div>
+</footer>

@@ -1,0 +1,63 @@
+---
+// src/components/ChatBotPage.astro
+---
+<div class="page" id="page-chatbot">
+    <section class="hero" style="padding-bottom:2rem;">
+        <h1>AI <span class="gradient">ChatBot</span></h1>
+        <p>Experience the power of advanced AI. Ask anything and get intelligent responses powered by Qwen.</p>
+    </section>
+
+    <div class="demo-container" style="margin-bottom:4rem;">
+        <div class="demo-window" style="position:relative;">
+            <div class="demo-header">
+                <div class="demo-dot red"></div>
+                <div class="demo-dot yellow"></div>
+                <div class="demo-dot green"></div>
+                <div class="ai-selector" id="chatbot-ai-selector">
+                    <button class="ai-selector-btn" onclick="toggleAISelector('chatbot')">
+                        <span class="ai-selector-icon" id="chatbot-ai-icon">🤖</span>
+                        <span class="ai-selector-name" id="chatbot-ai-name">Qwen</span>
+                        <svg class="ai-selector-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="ai-selector-dropdown" id="chatbot-ai-dropdown">
+                        <div class="ai-option active" data-ai="qwen" onclick="selectAI('chatbot', 'qwen')">
+                            <span class="ai-option-icon">🤖</span>
+                            <div class="ai-option-info">
+                                <span class="ai-option-name">Qwen</span>
+                                <span class="ai-option-desc">通义千问 · 阿里云</span>
+                            </div>
+                            <span class="ai-option-check">✓</span>
+                        </div>
+                        <div class="ai-option" data-ai="deepseek" onclick="selectAI('chatbot', 'deepseek')">
+                            <span class="ai-option-icon">🔮</span>
+                            <div class="ai-option-info">
+                                <span class="ai-option-name">DeepSeek</span>
+                                <span class="ai-option-desc">深度求索 · DeepSeek</span>
+                            </div>
+                            <span class="ai-option-check">✓</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Login overlay for non-authenticated users -->
+            <div class="chatbot-login-overlay" id="chatbot-login-overlay">
+                <p>Please log in to use the ChatBot</p>
+                <button class="btn-primary" onclick="openModal('login')">Log In</button>
+            </div>
+            
+            <div class="demo-chat" id="chatbot-chat" style="min-height:450px;max-height:550px;">
+                <div class="chat-message">
+                    <div class="chat-avatar">AI</div>
+                    <div class="chat-bubble">
+                        <p>Hello! I'm AGI Era's AI assistant. I can help you with coding, analysis, creative writing, and much more. What would you like to explore?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-input">
+                <input type="text" placeholder="Type your message..." id="chatbot-input-field" onkeypress="handleChatbotInput(event)">
+                <button onclick="sendChatbotMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>

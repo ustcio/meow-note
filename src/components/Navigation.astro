@@ -1,0 +1,77 @@
+---
+// src/components/Navigation.astro
+---
+<nav>
+    <div class="nav-container">
+        <div class="nav-glass">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+                <div class="logo" onclick="navigateToPage('home')">AGI Era</div>
+                <button class="admin-trigger" onclick="openAdminLogin()" title="Admin Access">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a class="active" data-page="home">Home</a></li>
+                <li><a data-page="research">Research</a></li>
+                <li><a data-page="chatbot">ChatBot</a></li>
+                <li><a data-page="kit">Kit</a></li>
+                <li><a data-page="about">About</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+                
+                <div id="auth-buttons" style="display: flex; gap: 1rem;">
+                    <button class="nav-login" onclick="openModal('login')">Log In</button>
+                    <button class="nav-cta" onclick="openModal('signup')">Sign Up</button>
+                </div>
+                
+                <div class="user-menu" id="user-menu" style="display: none;">
+                    <div class="user-avatar" id="user-avatar" onclick="toggleUserDropdown()">U</div>
+                    <span class="user-name" id="user-name">Username</span>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <div class="user-dropdown-header">
+                            <div class="user-dropdown-name" id="dropdown-name">Username</div>
+                            <div class="user-dropdown-email" id="dropdown-email">user@example.com</div>
+                        </div>
+                        <div class="user-dropdown-divider"></div>
+                        <a class="user-dropdown-item" onclick="navigateToPage('profile'); toggleUserDropdown();">
+                            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M2 14c0-2.5 2.5-4.5 6-4.5s6 2 6 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <span>Profile</span>
+                        </a>
+                        <div class="user-dropdown-divider"></div>
+                        <a class="user-dropdown-item logout" onclick="logout()">
+                            <svg viewBox="0 0 16 16" fill="none"><path d="M6 14H3a1 1 0 01-1-1V3a1 1 0 011-1h3M11 11l3-3-3-3M14 8H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <span>Log Out</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mobile-nav" id="mobile-nav">
+        <a class="active" data-page="home" onclick="navigateToPage('home'); toggleMobileMenu();">Home</a>
+        <a data-page="research" onclick="navigateToPage('research'); toggleMobileMenu();">Research</a>
+        <a data-page="chatbot" onclick="navigateToPage('chatbot'); toggleMobileMenu();">ChatBot</a>
+        <a data-page="kit" onclick="navigateToPage('kit'); toggleMobileMenu();">Kit</a>
+        <a data-page="about" onclick="navigateToPage('about'); toggleMobileMenu();">About</a>
+        <div class="mobile-nav-divider"></div>
+        <div class="mobile-nav-auth" id="mobile-auth-guest">
+            <button class="nav-login" onclick="openModal('login'); toggleMobileMenu();">Log In</button>
+            <button class="nav-cta" onclick="openModal('signup'); toggleMobileMenu();">Sign Up</button>
+        </div>
+        <div class="mobile-nav-auth hidden" id="mobile-auth-user">
+            <button class="nav-login" onclick="navigateToPage('profile'); toggleMobileMenu();">Profile</button>
+            <button class="nav-cta" style="background:#ef4444;" onclick="logout(); toggleMobileMenu();">Log Out</button>
+        </div>
+    </div>
+</nav>

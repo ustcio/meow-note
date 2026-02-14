@@ -1,0 +1,131 @@
+---
+// src/components/HomePage.astro
+---
+<div class="page active" id="page-home">
+    <section class="hero">
+        <div class="hero-badge">
+            <span>Now Available: AGI Era v2.0</span>
+        </div>
+        <h1>Build the Future with<br><span class="gradient">Artificial General Intelligence</span></h1>
+        <p>The most advanced AI platform for developers and enterprises. Create, deploy, and scale intelligent applications with unprecedented capabilities.</p>
+        
+        <div class="hero-actions">
+            <button class="btn-primary" onclick="openModal('signup')">
+                Start Building
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button class="btn-secondary" onclick="navigateToPage('docs')">
+                View Documentation
+            </button>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">99.9%</div>
+                <div class="stat-label">Uptime SLA</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">50M+</div>
+                <div class="stat-label">API Calls Daily</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">10K+</div>
+                <div class="stat-label">Developers</div>
+            </div>
+        </div>
+    </section>
+
+    <section style="max-width:1400px;margin:0 auto;">
+        <div class="section-header">
+            <h2>Built for the AI-First Era</h2>
+            <p>Everything you need to build intelligent applications that understand, reason, and create.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Lightning Fast</h3>
+                <p>Sub-100ms response times with our globally distributed inference network.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🧠</span>
+                <h3>Advanced Reasoning</h3>
+                <p>Multi-step reasoning and complex problem-solving capabilities.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3>Enterprise Security</h3>
+                <p>SOC 2 Type II certified with end-to-end encryption.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔌</span>
+                <h3>Simple Integration</h3>
+                <p>REST APIs and SDKs for Python, JavaScript, Go, and more.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Real-time Analytics</h3>
+                <p>Monitor usage, performance, and costs with detailed dashboards.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🌐</span>
+                <h3>Global Scale</h3>
+                <p>Deploy to 30+ regions with automatic failover and load balancing.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding:4rem 0;">
+        <div class="demo-container">
+            <div class="section-header">
+                <h2>Experience the Power</h2>
+                <p>Try our AI assistant right here. Ask anything.</p>
+            </div>
+            <div class="demo-window">
+                <div class="demo-header">
+                    <div class="demo-dot red"></div>
+                    <div class="demo-dot yellow"></div>
+                    <div class="demo-dot green"></div>
+                    <div class="ai-selector" id="demo-ai-selector">
+                        <button class="ai-selector-btn" onclick="toggleAISelector('demo')">
+                            <span class="ai-selector-icon" id="demo-ai-icon">🤖</span>
+                            <span class="ai-selector-name" id="demo-ai-name">Qwen</span>
+                            <svg class="ai-selector-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="ai-selector-dropdown" id="demo-ai-dropdown">
+                            <div class="ai-option active" data-ai="qwen" onclick="selectAI('demo', 'qwen')">
+                                <span class="ai-option-icon">🤖</span>
+                                <div class="ai-option-info">
+                                    <span class="ai-option-name">Qwen</span>
+                                    <span class="ai-option-desc">通义千问 · 阿里云</span>
+                                </div>
+                                <span class="ai-option-check">✓</span>
+                            </div>
+                            <div class="ai-option" data-ai="deepseek" onclick="selectAI('demo', 'deepseek')">
+                                <span class="ai-option-icon">🔮</span>
+                                <div class="ai-option-info">
+                                    <span class="ai-option-name">DeepSeek</span>
+                                    <span class="ai-option-desc">深度求索 · DeepSeek</span>
+                                </div>
+                                <span class="ai-option-check">✓</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-chat" id="demo-chat">
+                    <div class="chat-message">
+                        <div class="chat-avatar">AI</div>
+                        <div class="chat-bubble">
+                            <p>Hello! I'm AGI Era's AI assistant. I can help you with coding, analysis, creative writing, and much more. What would you like to explore?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-input">
+                    <input type="text" placeholder="Type your message..." id="demo-input-field" onkeypress="handleDemoInput(event)">
+                    <button onclick="sendDemoMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

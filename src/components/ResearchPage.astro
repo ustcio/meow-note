@@ -1,0 +1,66 @@
+---
+// src/components/ResearchPage.astro
+const papers = [
+    {
+        title: "Scaling Laws for Neural Language Models",
+        date: "March 2024", authors: "Chen et al.",
+        abstract: "We investigate the scaling properties of language model performance on downstream tasks. Our findings reveal predictable relationships between compute, data, and model performance.",
+        tags: ["Language Models", "Scaling Laws", "Training"]
+    },
+    {
+        title: "Constitutional AI: Harmlessness from AI Feedback",
+        date: "January 2024", authors: "Park et al.",
+        abstract: "We propose a method for training harmless AI assistants without human labels for harms, using a set of principles to guide the AI's behavior during training.",
+        tags: ["AI Safety", "Alignment", "RLHF"]
+    },
+    {
+        title: "Efficient Training of Large Transformers",
+        date: "November 2023", authors: "Wong et al.",
+        abstract: "We present techniques for reducing the computational requirements of training large transformer models by up to 40% without sacrificing performance.",
+        tags: ["Efficiency", "Transformers", "Optimization"]
+    },
+    {
+        title: "Interpretability in Deep Neural Networks",
+        date: "September 2023", authors: "Miller et al.",
+        abstract: "New methods for understanding what neural networks learn, including visualization techniques and mechanistic interpretability approaches.",
+        tags: ["Interpretability", "Visualization", "Safety"]
+    }
+];
+---
+<div class="page" id="page-research">
+    <div class="papers-container">
+        <div class="papers-header">
+            <h1>Research</h1>
+            <p style="color:var(--text-secondary);font-size:1.1rem;">Advancing the frontier of AI capabilities and safety</p>
+        </div>
+        
+        <div class="section-header" style="text-align:left;margin-bottom:2rem;">
+            <h2>Recent Publications</h2>
+        </div>
+        
+        {papers.map(paper => (
+            <div class="paper-card">
+                <div class="paper-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                </div>
+                <div class="paper-content">
+                    <h3>{paper.title}</h3>
+                    <div class="paper-meta">
+                        <span>{paper.date}</span>
+                        <span>•</span>
+                        <span>{paper.authors}</span>
+                    </div>
+                    <p>{paper.abstract}</p>
+                    <div class="paper-tags">
+                        {paper.tags.map(tag => <span class="paper-tag">{tag}</span>)}
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>

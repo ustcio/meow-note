@@ -1,0 +1,261 @@
+---
+// src/components/KitPage.astro
+---
+<div class="page" id="page-kit">
+    <div class="kit-header">
+        <div class="page-badge">Utility Toolkit</div>
+        <h1>Super <span class="gradient" style="background:linear-gradient(135deg,var(--accent),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Kit</span></h1>
+        <p>专业工具集 · 26款实用工具助力您的日常工作</p>
+    </div>
+
+    <div class="kit-tools-grid">
+        <!-- 1. Speed Test -->
+        <div class="kit-tool-window" style="animation-delay:0.05s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">⚡</div>网速测试</div></div></div>
+            <div class="kit-tool-result" id="speed-result">-- Mbps</div>
+            <button class="kit-btn" onclick="runSpeedTest()">Run Test</button>
+        </div>
+
+        <!-- 2. Ping Test -->
+        <div class="kit-tool-window" style="animation-delay:0.1s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">📡</div>Ping Test</div></div></div>
+            <input type="text" class="kit-input" id="ping-host" placeholder="Enter hostname..." value="google.com">
+            <div class="kit-tool-result" id="ping-result">-- ms</div>
+            <button class="kit-btn" onclick="runPingTest()">Ping</button>
+        </div>
+
+        <!-- 3. IP Detection -->
+        <div class="kit-tool-window" style="animation-delay:0.15s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🌐</div>IP Detection</div></div></div>
+            <div class="kit-tool-result" id="ip-result">Click to detect</div>
+            <button class="kit-btn" onclick="runIPLookup()">Detect IP</button>
+        </div>
+
+        <!-- 4. VPN/Proxy Detection -->
+        <div class="kit-tool-window" style="animation-delay:0.2s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🛡️</div>VPN Detection</div></div></div>
+            <div class="kit-tool-result" id="vpn-result">Click to check</div>
+            <button class="kit-btn" onclick="detectVPN()">Check VPN</button>
+        </div>
+
+        <!-- 5. SSL Check -->
+        <div class="kit-tool-window" style="animation-delay:0.25s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🔐</div>SSL Check</div></div></div>
+            <input type="text" class="kit-input" id="ssl-domain" placeholder="Enter domain...">
+            <div class="kit-tool-result" id="ssl-result">Enter domain to check</div>
+            <button class="kit-btn" onclick="checkSSL()">Check SSL</button>
+        </div>
+
+        <!-- 6. HTTP Headers -->
+        <div class="kit-tool-window" style="animation-delay:0.3s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">📋</div>HTTP Headers</div></div></div>
+            <input type="text" class="kit-input" id="headers-url" placeholder="Enter URL...">
+            <div class="kit-tool-result" id="headers-result" style="text-align:left;font-size:0.8rem;">Enter URL to fetch</div>
+            <button class="kit-btn" onclick="fetchHeaders()">Fetch Headers</button>
+        </div>
+
+        <!-- 7. Security Scan -->
+        <div class="kit-tool-window" style="animation-delay:0.35s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🔍</div>Security Scan</div></div></div>
+            <div class="kit-tool-result" id="security-result">Click to scan browser</div>
+            <button class="kit-btn" onclick="securityScan()">Scan Now</button>
+        </div>
+
+        <!-- 8. Currency Exchange -->
+        <div class="kit-tool-window" style="animation-delay:0.4s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">💱</div>Currency Exchange</div></div></div>
+            <input type="number" class="kit-input" id="currency-amount" placeholder="Amount" value="100">
+            <div style="display:flex;gap:0.5rem;">
+                <select class="kit-select" id="currency-from"><option value="USD">USD</option><option value="EUR">EUR</option><option value="CNY">CNY</option><option value="JPY">JPY</option><option value="GBP">GBP</option></select>
+                <select class="kit-select" id="currency-to"><option value="CNY">CNY</option><option value="USD">USD</option><option value="EUR">EUR</option><option value="JPY">JPY</option><option value="GBP">GBP</option></select>
+            </div>
+            <div class="kit-tool-result" id="currency-result">Enter amount to convert</div>
+            <button class="kit-btn" onclick="convertCurrency()">Convert</button>
+        </div>
+
+        <!-- 9. QR Code Generator -->
+        <div class="kit-tool-window" style="animation-delay:0.45s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">📱</div>QR Code</div></div></div>
+            <input type="text" class="kit-input" id="qr-input" placeholder="Enter text or URL...">
+            <div class="kit-tool-result" id="qr-result" style="background:white;padding:1rem;">
+                <canvas id="qr-canvas"></canvas>
+            </div>
+            <button class="kit-btn" onclick="generateQRCode()">Generate QR</button>
+        </div>
+
+        <!-- 10. Short URL -->
+        <div class="kit-tool-window" style="animation-delay:0.5s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🔗</div>URL Shortener</div></div></div>
+            <input type="text" class="kit-input" id="url-input" placeholder="Enter URL to shorten...">
+            <div class="kit-tool-result" id="url-result">Short URL appears here</div>
+            <button class="kit-btn" onclick="shortenURL()">Shorten</button>
+        </div>
+
+        <!-- 11. Unit Converter -->
+        <div class="kit-tool-window" style="animation-delay:0.55s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">📐</div>Unit Converter</div></div></div>
+            <input type="number" class="kit-input" id="unit-value" placeholder="Value" value="1">
+            <select class="kit-select" id="unit-type">
+                <option value="km-mi">KM → Miles</option><option value="mi-km">Miles → KM</option>
+                <option value="kg-lb">KG → Pounds</option><option value="lb-kg">Pounds → KG</option>
+                <option value="c-f">°C → °F</option><option value="f-c">°F → °C</option>
+            </select>
+            <div class="kit-tool-result" id="unit-result">Result appears here</div>
+            <button class="kit-btn" onclick="convertUnit()">Convert</button>
+        </div>
+
+        <!-- 12. Password Strength -->
+        <div class="kit-tool-window" style="animation-delay:0.6s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🔑</div>Password Check</div></div></div>
+            <input type="text" class="kit-input" id="pwd-check-input" placeholder="Enter password to check..." oninput="checkPassword()">
+            <div class="kit-tool-result" id="pwd-result">Enter a password</div>
+        </div>
+
+        <!-- 13. Translator -->
+        <div class="kit-tool-window" style="animation-delay:0.65s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🌍</div>Translator</div></div></div>
+            <textarea class="kit-textarea" id="translate-input" placeholder="Enter text to translate..." style="min-height:80px;"></textarea>
+            <select class="kit-select" id="translate-lang">
+                <option value="en">English</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="es">Español</option>
+            </select>
+            <div class="kit-tool-result" id="translate-result">Translation appears here</div>
+            <button class="kit-btn" onclick="translateText()">Translate</button>
+        </div>
+
+        <!-- 14. Base Converter -->
+        <div class="kit-tool-window" style="animation-delay:0.7s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🔢</div>Base Converter</div></div></div>
+            <input type="text" class="kit-input" id="base-input" placeholder="Enter number..." value="255">
+            <select class="kit-select" id="base-from"><option value="10">Decimal (10)</option><option value="2">Binary (2)</option><option value="8">Octal (8)</option><option value="16">Hex (16)</option></select>
+            <div class="kit-tool-result" id="base-result" style="text-align:left;font-size:0.85rem;">Result appears here</div>
+            <button class="kit-btn" onclick="convertBase()">Convert</button>
+        </div>
+
+        <!-- 15. Random Number -->
+        <div class="kit-tool-window" style="animation-delay:0.75s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🎰</div>Random Number</div></div></div>
+            <div style="display:flex;gap:0.5rem;">
+                <input type="number" class="kit-input" id="rand-min" placeholder="Min" value="1">
+                <input type="number" class="kit-input" id="rand-max" placeholder="Max" value="100">
+            </div>
+            <div class="kit-tool-result" id="rand-result">--</div>
+            <button class="kit-btn" onclick="generateRandomNumber()">Generate</button>
+        </div>
+
+        <!-- 16. Hash Generator -->
+        <div class="kit-tool-window" style="animation-delay:0.8s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🔐</div>Hash Generator</div></div></div>
+            <input type="text" class="kit-input" id="hash-input" placeholder="Enter text...">
+            <select class="kit-select" id="hash-type"><option value="SHA-256">SHA-256</option><option value="SHA-1">SHA-1</option><option value="SHA-512">SHA-512</option></select>
+            <div class="kit-tool-result" id="hash-result" style="font-size:0.7rem;">Hash appears here</div>
+            <button class="kit-btn" onclick="generateHash()">Generate Hash</button>
+        </div>
+
+        <!-- 17. Age Calculator -->
+        <div class="kit-tool-window" style="animation-delay:0.85s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🎂</div>Age Calculator</div></div></div>
+            <input type="date" class="kit-input" id="birth-date">
+            <div class="kit-tool-result" id="age-result">Enter your birth date</div>
+            <button class="kit-btn" onclick="calculateAge()">Calculate</button>
+        </div>
+
+        <!-- 18. Date Calculator -->
+        <div class="kit-tool-window" style="animation-delay:0.9s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">📅</div>Date Calculator</div></div></div>
+            <input type="date" class="kit-input" id="date-start">
+            <input type="date" class="kit-input" id="date-end">
+            <div class="kit-tool-result" id="date-result">Select two dates</div>
+            <button class="kit-btn" onclick="calculateDateDiff()">Calculate</button>
+        </div>
+
+        <!-- 19. World Clock -->
+        <div class="kit-tool-window" style="animation-delay:0.95s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🕐</div>World Clock</div></div></div>
+            <div class="kit-tool-result" id="world-clock-result" style="font-size:0.8rem;text-align:left;flex-direction:column;align-items:stretch;">Loading...</div>
+        </div>
+
+        <!-- 20. BMI Calculator -->
+        <div class="kit-tool-window" style="animation-delay:1s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">⚖️</div>BMI Calculator</div></div></div>
+            <div style="display:flex;gap:0.5rem;">
+                <input type="number" class="kit-input" id="bmi-height" placeholder="Height (cm)" value="170">
+                <input type="number" class="kit-input" id="bmi-weight" placeholder="Weight (kg)" value="65">
+            </div>
+            <div class="kit-tool-result" id="bmi-result">Enter height & weight</div>
+            <button class="kit-btn" onclick="calculateBMI()">Calculate BMI</button>
+        </div>
+
+        <!-- 21. Scientific Calculator -->
+        <div class="kit-tool-window" style="animation-delay:1.05s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🧮</div>Calculator</div></div></div>
+            <input type="text" class="kit-input" id="calc-display" placeholder="0" readonly style="text-align:right;font-family:'Space Mono',monospace;font-size:1.5rem;">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">
+                <button class="kit-btn" style="background:rgba(239,68,68,0.15);color:#ef4444;" onclick="calcClear()">C</button>
+                <button class="kit-btn" style="background:rgba(245,158,11,0.15);color:var(--accent-orange);" onclick="calcDelete()">⌫</button>
+                <button class="kit-btn" style="background:rgba(139,92,246,0.15);color:var(--accent-purple);" onclick="calcInput('(')">(</button>
+                <button class="kit-btn" style="background:rgba(139,92,246,0.15);color:var(--accent-purple);" onclick="calcInput(')')">)</button>
+                <button class="kit-btn" onclick="calcInput('7')">7</button>
+                <button class="kit-btn" onclick="calcInput('8')">8</button>
+                <button class="kit-btn" onclick="calcInput('9')">9</button>
+                <button class="kit-btn" style="background:rgba(41,151,255,0.15);color:var(--accent);" onclick="calcInput('/')">÷</button>
+                <button class="kit-btn" onclick="calcInput('4')">4</button>
+                <button class="kit-btn" onclick="calcInput('5')">5</button>
+                <button class="kit-btn" onclick="calcInput('6')">6</button>
+                <button class="kit-btn" style="background:rgba(41,151,255,0.15);color:var(--accent);" onclick="calcInput('*')">×</button>
+                <button class="kit-btn" onclick="calcInput('1')">1</button>
+                <button class="kit-btn" onclick="calcInput('2')">2</button>
+                <button class="kit-btn" onclick="calcInput('3')">3</button>
+                <button class="kit-btn" style="background:rgba(41,151,255,0.15);color:var(--accent);" onclick="calcInput('-')">−</button>
+                <button class="kit-btn" onclick="calcInput('0')">0</button>
+                <button class="kit-btn" onclick="calcInput('.')">.</button>
+                <button class="kit-btn" style="background:linear-gradient(135deg,var(--accent),var(--accent-purple));color:white;" onclick="calcEval()">=</button>
+                <button class="kit-btn" style="background:rgba(41,151,255,0.15);color:var(--accent);" onclick="calcInput('+')">+</button>
+            </div>
+        </div>
+
+        <!-- 22. Function Graph -->
+        <div class="kit-tool-window" style="animation-delay:1.1s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">📈</div>Function Graph</div></div></div>
+            <input type="text" class="kit-input" id="func-input" placeholder="e.g. Math.sin(x)" value="Math.sin(x)">
+            <div class="kit-tool-result" style="background:var(--bg-secondary);padding:0.5rem;"><canvas id="func-canvas" width="260" height="200"></canvas></div>
+            <button class="kit-btn" onclick="plotFunction()">Plot</button>
+        </div>
+
+        <!-- 23. Citation Generator -->
+        <div class="kit-tool-window" style="animation-delay:1.15s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">📚</div>Citation Gen</div></div></div>
+            <input type="text" class="kit-input" id="cite-author" placeholder="Author name">
+            <input type="text" class="kit-input" id="cite-title" placeholder="Title">
+            <input type="number" class="kit-input" id="cite-year" placeholder="Year">
+            <select class="kit-select" id="cite-format"><option value="apa">APA</option><option value="mla">MLA</option><option value="chicago">Chicago</option></select>
+            <div class="kit-tool-result" id="cite-result" style="font-size:0.85rem;text-align:left;">Citation appears here</div>
+            <button class="kit-btn" onclick="generateCitation()">Generate</button>
+        </div>
+
+        <!-- 24. Wavelength Converter -->
+        <div class="kit-tool-window" style="animation-delay:1.2s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🌈</div>Wavelength ↔ Freq</div></div></div>
+            <input type="number" class="kit-input" id="wave-input" placeholder="Wavelength (nm)" value="550">
+            <div class="kit-tool-result" id="wave-result">Enter wavelength to convert</div>
+            <button class="kit-btn" onclick="convertWavelength()">Convert</button>
+        </div>
+
+        <!-- 25. Lucky Color -->
+        <div class="kit-tool-window" style="animation-delay:1.25s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🎨</div>Lucky Color</div></div></div>
+            <div class="kit-tool-result" id="lucky-color-result" style="min-height:120px;">
+                <div style="text-align:center;">Click to reveal your lucky color!</div>
+            </div>
+            <button class="kit-btn" onclick="generateLuckyColor()">Generate</button>
+        </div>
+
+        <!-- 26. Tarot Card -->
+        <div class="kit-tool-window" style="animation-delay:1.3s">
+            <div class="kit-tool-header"><div class="kit-tool-header-left"><div class="kit-tool-dots"><div class="kit-tool-dot red"></div><div class="kit-tool-dot yellow"></div><div class="kit-tool-dot green"></div></div><div class="kit-tool-title"><div class="kit-tool-icon">🃏</div>Tarot Card</div></div></div>
+            <div class="kit-tool-result" id="tarot-result" style="min-height:120px;">
+                <div style="text-align:center;">Draw a card to reveal your fortune!</div>
+            </div>
+            <button class="kit-btn" onclick="drawTarotCard()">Draw Card</button>
+        </div>
+    </div>
+</div>
